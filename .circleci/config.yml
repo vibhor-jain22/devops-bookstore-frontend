@@ -10,14 +10,13 @@ jobs:
       name: node/default
       tag: '13.14'
     steps:
-      - checkout
       - node/install-packages
       - run:
           command: npm run test
 workflows:
   test-build-push-image:
     jobs:
-      - test:
+      - test
       - aws-ecr/build-and-push-image:
           repo: devops-upskill-api
           tag: '1.$CIRCLE_BUILD_NUM'
